@@ -30,8 +30,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+//app.MapStaticAssets();
+//app.MapRazorPages()
+//.WithStaticAssets();
+app.UseStaticFiles(); // serve static files
+app.MapRazorPages(); // map Razor Pages
+//app.MapGet("/", () => "Hello World!");
 
 app.Run();

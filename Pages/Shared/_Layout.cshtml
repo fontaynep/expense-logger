@@ -2,32 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - Expense Logger</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
             <a class="navbar-brand" href="/">Expense Logger</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-page="/Expenses/Index">Expenses</a>
+                        <a class="nav-link" href="/Expenses">Expenses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Expenses/Create">Add Expense</a>
                     </li>
                 </ul>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main class="container mt-4">
         @RenderBody()
     </main>
 
-    <footer class="text-center text-muted py-3">
-        &copy; @(DateTime.Now.Year) - Expense Logger
+    <footer class="bg-light text-center text-muted mt-5 py-3">
+        <p class="mb-0">© @DateTime.Now.Year - Expense Logger</p>
     </footer>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

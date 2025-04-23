@@ -11,12 +11,8 @@ namespace ExpenseLogger.Models
             }
 
         [Required]
-        public string Description
-            {
-            get; set;
-            }
+        //public string Description{get; set;}
 
-        [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than zero.")]
         public decimal Amount
             {
@@ -29,10 +25,10 @@ namespace ExpenseLogger.Models
             get; set;
             }
 
-        public string Category
-            {
-            get; set;
-            }
+        //public string Category
+            //{
+            //get; set;
+            //}
         public string? Description { get; set; }
         public string? Category { get; set; }
 

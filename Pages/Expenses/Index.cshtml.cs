@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ExpenseLogger.Data;
 using ExpenseLogger.Models;
 
-namespace ExpenseLogger.Pages_Expenses
+namespace ExpenseLogger.Pages.Expenses
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace ExpenseLogger.Pages_Expenses
             _context = context;
         }
 
-        public IList<Expense> Expense { get;set; } = default!;
+        public IList<Expense> Expenses { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Expense = await _context.Expenses.ToListAsync();
+            Expenses = await _context.Expenses.ToListAsync();
         }
     }
 }
