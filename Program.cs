@@ -1,4 +1,5 @@
 using ExpenseLogger.Data;          // for AppDbContext
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore; // for UseSqlite()
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=expenses.db"));
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+});
 
 
 
@@ -25,6 +30,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(); // <- Needed if you use wwwroot for CSS/JS
 
 app.UseRouting();
 
@@ -33,8 +39,8 @@ app.UseAuthorization();
 //app.MapStaticAssets();
 //app.MapRazorPages()
 //.WithStaticAssets();
-app.UseStaticFiles(); // serve static files
+
 app.MapRazorPages(); // map Razor Pages
-//app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => Results.Redirect("/Expenses"));
 
 app.Run();

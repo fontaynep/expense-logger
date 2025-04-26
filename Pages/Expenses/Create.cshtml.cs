@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ExpenseLogger.Data;
 using ExpenseLogger.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace ExpenseLogger.Pages_Expenses
-{
+namespace ExpenseLogger.Pages.Expenses
+    {
     public class CreateModel : PageModel
     {
         private readonly ExpenseLogger.Data.AppDbContext _context;
@@ -25,20 +26,32 @@ namespace ExpenseLogger.Pages_Expenses
         }
 
         [BindProperty]
-        public Expense Expense { get; set; } = default!;
+        public Expense Expense { get; set; } = new Expense();
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
             {
+            Console.WriteLine($"DEBUG Expense: {Expense.Description}, {Expense.Amount}, {Expense.Category}, {Expense.Date}");
+
+            if (!ModelState.IsValid)
+                {
+                Console.WriteLine("ModelState is invalid.");
+                foreach (var state in ModelState)
+                    {
+                    foreach (var error in state.Value.Errors)
+                        {
+                        Console.WriteLine($"Model Error - {state.Key}: {error.ErrorMessage}");
+                        }
+                    }
                 return Page();
-            }
+                }
 
             _context.Expenses.Add(Expense);
             await _context.SaveChangesAsync();
-
             return RedirectToPage("./Index");
+            }
+
+
+
         }
     }
-}
