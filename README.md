@@ -21,13 +21,13 @@ Built with **ASP.NET Core Razor Pages**, **Entity Framework Core**, and **Bootst
 ## 📸 Screenshots
 
 ### Home Page
-[Home Page](screenshots/expenses.png)
+[Home Page](screenshots/Expenses.png)
 
 ### Create Expense Form
-[Detail Expenses](screenshots/details.png)
+[Detail Expenses](screenshots/Details.png)
 
 ### Edit Expense Form
-[Edit Expense](screenshots/edit.png)
+[Edit Expense](screenshots/Edit.png)
 
 
 ## 📂 How to Run Locally
