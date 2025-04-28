@@ -37,3 +37,21 @@ body {
 h1 {
     color: #343a40;
 }
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .form-container h1 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+.btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+}

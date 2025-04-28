@@ -4,12 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExpenseLogger.Data;
 using ExpenseLogger.Models;
 
-namespace ExpenseLogger.Pages_Expenses
+namespace ExpenseLogger.Pages.Expenses
 {
     public class EditModel : PageModel
     {
@@ -30,17 +29,23 @@ namespace ExpenseLogger.Pages_Expenses
                 return NotFound();
             }
 
-            var expense =  await _context.Expenses.FirstOrDefaultAsync(m => m.Id == id);
+            var expense = await _context.Expenses.FirstOrDefaultAsync(m => m.Id == id);
             if (expense == null)
             {
                 return NotFound();
             }
+
             Expense = expense;
+
+            //  Fix broken dates before showing page
+            if (Expense.Date == DateTime.MinValue)
+            {
+                Expense.Date = DateTime.Today;
+            }
+
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -65,7 +70,8 @@ namespace ExpenseLogger.Pages_Expenses
                     throw;
                 }
             }
-
+            // Set success message
+            TempData["SuccessMessage"] = "Expense updated successfully!";
             return RedirectToPage("./Index");
         }
 
